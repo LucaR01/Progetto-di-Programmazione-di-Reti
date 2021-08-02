@@ -1,0 +1,250 @@
+% ------------- ARCHITETTURA DELL'APPLICAZIONE ----------------------------------
+
+\section{Architettura e Design dell'Applicazione} % Architettura dell'Applicazione
+
+\subsection{Comunicazione Client-Server}
+
+\begin{itemize}
+	\item \textsf{\normalsize Gli utenti si connettono al server e scelgono un nome.}
+	%\item \textsf{\normalsize Gli utenti scelgono un nome.}
+	\item \textsf{\normalsize Il server invia loro 3 domande (di cui 1 trabocchetto)}
+	\item \textsf{\normalsize I clienti scelgono una tra le tre domande.}
+	\begin{itemize}
+		\item \textsf{\normalsize Se la domanda scelta è quella a trabocchetto, allora verranno eliminati e disconnessi dal server.}
+		\item \textsf{\normalsize Altrimenti proseguono col gioco.}
+	\end{itemize}
+	\item \textsf{\normalsize Ricevono dal server 2 possibili risposte alla domanda da loro scelta.}
+	\begin{itemize}
+		\item \textsf{\normalsize Se rispondono correttamente , il loro punteggio (inizialmente a zero) salirà di 1.}
+		\item \textsf{\normalsize Se sbagliano il loro punteggio verrà decrementato di 1.} % non verrà impattato (?)
+	\end{itemize}
+	\item \textsf{\normalsize Una volta risposto alla prima domanda (sia erratamente che correttamente) verrà fatto partire il timer.}
+	\begin{itemize}
+		\item \textsf{\normalsize Il timer durerà di default 30 secondi.}
+	\end{itemize}
+	\item \textsf{\normalsize Gli utenti continueranno, in questo modo, a ricevere domande e a dare risposte finchè il timer non terminerà.}%scadrà}
+	\item \textsf{\normalsize Una volta che il timer avrà terminato, verrà segnalato al server di smettere di inviare domande.}
+	\item \textsf{\normalsize Gli utenti , a questo punto, invieranno il loro punteggio al server.}
+	\item \textsf{\normalsize Il server così decreterà il vincitore e i perdenti oppure il pareggio nel caso che tutti abbiano ottenuto lo stesso punteggio.}
+	\item \textsf{\normalsize Dopodichè il Server invierà ai clients la classifica con i loro punteggi e quante risposte corrette e sbagliate hanno dato.}
+	\item \textsf{\normalsize Conclusa la partita, il server resterà in attesa di notizie dai clients, per sapere se vogliono rigiocare oppure se si sono disconnessi.} % oppure se vogliono chiudere la connessione / uscire / smettere di giocare.
+	%\item \textsf{\normalsize}
+\end{itemize}
+
+%\newpage
+
+%\enlargethispage{1\linewidth}
+
+\newgeometry{left = 1.2cm, right = 1.2cm}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\linewidth]{./sequence_diagram_client-server_comunication_grid}
+	\caption{Communicazione Client-Server Sequence Diagram}
+	\label{fig:sequence_diagram_client-server_comunication}
+\end{figure}
+
+\restoregeometry
+
+%\newpage
+
+%\begin{comment}
+\subsection{Il Client}
+\textsf{\normalsize Il client si occupa di inizializzare un socket e di tutti gli aspetti che riguardano l'interfaccia grafica, in base alle direttive del server. Inoltre ogni client ha un proprio timer locale che parte in autonomia dal server, ma lo informa quando ha terminato.} \\
+
+\subsection{UML Client}
+
+%\newgeometry{left = .5cm , right = .5cm}
+
+\begin{figure}[p] % p
+	\centering
+	\includegraphics[width=.8\linewidth]{./client_uml_transparent_background}
+	\caption{Client UML}
+	\label{fig:client_uml}
+\end{figure}
+
+%\restoregeometry
+
+%\end{comment}
+\textbf{\large Funzioni del cliente}
+\begin{itemize}
+	\item \textbf{\normalsize connect():}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione che viene chiamata dal cliente, premendo il pulsante connect, permette la connessione con il server.}
+	\end{itemize}
+	\item \textbf{\normalsize receive\_channel(client): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa è la funzione principale che prende come parametro un client (socket) e chiama la funzione recv\_initial\_questions(client)}
+	\end{itemize}
+	\item \textbf{\normalsize recv\_initial\_questions(client): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione permette al cliente di ricevere le 3 domande (con 1 trabocchetto) dal server.}
+	\end{itemize}
+	\item \textbf{\normalsize receive\_questions(client): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione permette al client di ricevere la possibili risposte alla domanda da lui/lei scelta.}
+	\end{itemize}
+	\item \textbf{\normalsize scelta(arg, client):}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione che viene chiamata dal client dopo aver premuto uno dei due pulsanti di risposta alla domanda; aggiorna il punteggio del giocatore in base all'arg che corrisponde ad una risposta alla domanda  e richiama recv\_inital\_questions(client) per poter farsi inviare dal server altre domande.}
+	\end{itemize}
+	\item \textbf{\normalsize timer(counter\_started, client): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione viene chiamata la prima volta che viene chiamata la funzione scelta(arg, client). Questa fa partire un timer di gioco di 30 secondi (di default) se il contatore (counter\_started) non era già partito.}
+	\end{itemize}
+	\item \textbf{\normalsize end\_game(client): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione invia al server le statistiche di gioco e riceve da esso la classifica con tutti i giocatori.}
+	\end{itemize}
+	\item \textbf{\normalsize leaderboard(client): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione viene chiamata una volta che il timer si è fermato. Riceve dall'utente le statistiche riguardo alle risposte date corrette e sbagliate e crea la classifica di tutti i giocatori e la invia al client.}
+	\end{itemize}
+	\item \textbf{\normalsize reset(client): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione resetta alcune variabili e liste per poter far ripartire il gioco e chiama receive\_channel(client) per ricevere nuove domande dal server.}
+	\end{itemize}
+	\item \textbf{\normalsize male(name): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione prende un name, ovvero una stringa e restituisce \textbf{True} se il nome passato come argomento è maschile altrimenti \textbf{False} se è femminile.}
+	\end{itemize}
+	\item \textbf{\normalsize quit(client): }
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione notifica il server che il client sta per uscire e poi termina il programma.}
+	\end{itemize}
+\end{itemize}
+
+\textbf{\large Funzioni del cliente che riguardano la GUI (Interfaccia grafica)}
+%\enlargethispage{1\linewidth}
+\begin{itemize}
+	\item \textbf{\normalsize disable\_initial\_buttons(todo)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione abilita/disabilita i 3 pulsanti delle 3 domande in base al valore di todo (bool).}
+	\end{itemize}
+	\item \textbf{\normalsize disable\_buttons(todo)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funziona, come quella sopra, abilita/disabilita i 2 pulsanti delle 2 possibili risposte alla domanda scelta dall'utente in base al valore di todo (bool).}
+	\end{itemize}
+	\item \textbf{\normalsize update\_gui()}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione crea alcuni frames e aggiorna il testo di alcuni labels (quello del nome e quello del ruolo).}
+	\end{itemize}
+	\item \textbf{\normalsize create\_label(frame, text)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione crea un label e viene usata per la creazione della leaderboard (classifica) visto che il numero di giocatori non è conosciuto a priori.}
+	\end{itemize}
+	\item \textbf{\normalsize question\_choice(question\_picked, client)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione valuta quale domanda abbia scelto l'utente e se era la domanda trabocchetto allora lo elimina dal gioco.}
+	\end{itemize}
+\end{itemize}
+
+\newpage
+
+\newgeometry{left=.8cm, right =.8cm}
+%\enlargethispage{1\linewidth}
+\subsection{Ordine delle Chiamate alle Funzioni del Cliente}
+%\begin{landscape}
+%\begin{sidewaysfigure}
+%\textbf{\normalsize Ordine Chiamate Funzioni Cliente}
+\begin{figure}[ht] % p
+	\centering
+	\includegraphics[width=1\linewidth]{./client_functions_call_order3}
+	\caption{Diagramma di flusso: Ordine Chiamate Funzioni}
+	\label{fig:client_functions_call_order}
+\end{figure}
+%\end{sidewaysfigure}
+%\end{landscape}
+
+\restoregeometry
+
+\newpage
+
+\subsection{Il Server}
+
+\textsf{\normalsize Il server è il cuore portante dell'applicazione, fa partire il gioco, coordina i giocatori, stila una classifica ed informa i giocatori del risultato della partita.}
+
+\subsection{Server UML}
+%\newgeometry{left = 1cm, right = 1cm}
+%\enlargethispage{1\linewidth}
+\begin{figure}[p] % p
+	\centering
+	\includegraphics[width=.78\linewidth]{./server_uml}
+	\caption{Server UML}
+	\label{fig:server_uml}
+\end{figure}
+
+%\restoregeometry
+
+\textbf{\normalsize Funzioni del Server}
+
+\begin{itemize}
+	\item \textbf{\normalsize accept\_connections()}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione viene chiamata da una thread ogni qual volta che un client si connette al server.}
+	\end{itemize}
+	\item \textbf{\normalsize pick\_role(nome)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione restituisce un ruolo maschile o femminile in base al nome passato come parametro.}
+	\end{itemize}
+	\item \textbf{\normalsize pick\_questions(client\_connection)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione sceglie delle domande casuali (tra cui una trabocchetto) li invia al client e poi aspetta di sapere dal client quale ha scelto per poter chiamare evaluate\_question(client\_connection) per poterla valutare.}
+	\end{itemize}
+	\item \textbf{\normalsize evaluate\_question(client\_connection)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione valuta la domanda scelta dall'utente, se è la domanda trabocchetto informa l'utente che ha perso ed è stato eliminato, altrimenti prosegue con send\_question(client).}
+	\end{itemize}
+	\item \textbf{\normalsize send\_question(client)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione invia all'utente la domanda che ha scelto più le 2 possibili risposte ad essa.}
+	\end{itemize}
+	\item \textbf{\normalsize gestisci\_utente(utente\_connection)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa è la funzione principale che viene chiamata una volta che l'utente ha acceduto al server. Si occupa di inviare/ricevere comunicazioni col client e creare la classifica e di terminare la partita.}
+	\end{itemize}
+	\item \textbf{\normalsize send\_leaderboard(utente\_connection)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione si occupa di raggruppare le varie statistiche dai giocatori e creare la classifica ed inviarla ai clients.}
+	\end{itemize}
+	\item \textbf{\normalsize game\_over(utente\_connection)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione chiama check\_client(client) per controllare se gli utenti sono ancora connessi e poi chiama reset(utente) per far ripartire il gioco.}
+	\end{itemize}
+	\item \textbf{\normalsize reset(utente)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione si occupa di azzerare alcune variabili e liste per poter far ripartire il gioco da capo.}
+	\end{itemize}
+	\item \textbf{\normalsize close\_connection(utente\_connection)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione si occupa di chiudere la connessione con un determinato client e di cancellarlo dalle liste in cui era presente.}
+	\end{itemize}
+	\item \textbf{\normalsize check\_client(client\_connection)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione riceve un messaggio dal client e in base a ciò valuta se esso resterà connesso o no. Se intende interrompere la connessione chiama close\_connection(utente\_connection)}
+	\end{itemize}
+	\item \textbf{\normalsize evaluate\_winner(utente\_connection)}
+	\begin{itemize}
+		\item \textsf{\normalsize Questa funzione riceve dai clients i loro risultati e li riordina e decreta il vincitore/perdente/pareggio ed invia ad ogni client il proprio risultato.}
+	\end{itemize}
+\end{itemize}
+
+\newpage
+\newgeometry{left=.5cm, right =.5cm}
+\subsection{Ordine delle Chiamate alle Funzioni del Server}
+%\enlargethispage{1\baselineskip}
+%\addtolength{\hoffset}{-4cm}
+
+\begin{figure}[ht] % p
+	\centering
+	\includegraphics[width=1\linewidth]{./server_functions_call_order3}
+	\caption{Diagramma di flusso: Ordine Chiamate Funzioni}
+	\label{fig:server_functions_call_order}
+\end{figure}
+
+\restoregeometry
+
+\newpage
+
+%\addtolength{\hoffset}{4cm}
+

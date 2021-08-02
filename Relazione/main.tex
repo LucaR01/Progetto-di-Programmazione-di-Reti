@@ -1,0 +1,342 @@
+% --- Relazione Progetto di Programmazione di Reti ---
+\documentclass[a4paper, 12pt]{article} % Qui era 12pt
+
+% --- PACKAGES ---
+
+\usepackage[italian]{babel}
+\usepackage{comment}
+
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\usepackage{amsmath}
+
+%\usepackage{paralist} % SE ATTIVO PARALIST, ITEMIZE ED ENUMERATE NON FUNZIONANO!!!
+
+\usepackage{amsthm}
+% it introduces the \newtheorem command
+\usepackage{amssymb}
+% new mathematical symbols
+\usepackage{eucal}
+% other mathematical symbols
+\usepackage{gensymb}
+% \degree \celsius \micro \ohm \perthousand
+\usepackage{mathptmx}
+% other mathematical symbols
+\usepackage{latexsym}
+% other mathematical symbols
+\usepackage{mathtools}
+% supplements amsmath
+\usepackage{textcomp}
+% extra symbols arrows like \textrightarrow, \texteuro, \textcelsius
+
+\usepackage[utf8]{inputenc}
+%\usepackage[utf8x]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{listingsutf8}
+%\usepackage[overload]{textcase}
+
+\usepackage{multicol}
+% Per le colonne
+
+%\usepackage{xcolor}
+% Per colorare il testo
+
+\usepackage[table, dvipsnames]{xcolor}
+% Per ulteriori colori
+% Quel table serve invece per colorare le righe in tabular
+
+\usepackage[document]{ragged2e}
+
+\usepackage{blindtext}
+
+\usepackage[scaled=.92]{helvet}
+
+\usepackage{tikz}
+
+%\usepackage{floatrow}
+
+%\usepackage{makecell}
+
+\usepackage[T1]{fontenc}
+%\usepackage{fourier, erewhon}
+\usepackage{geometry}
+\usepackage{array, caption, floatrow, tabularx, makecell, booktabs}%
+
+\usepackage{amsfonts}
+
+%\graphicspath{ {./images/} }
+% graphicspath dice a LaTex la path della cartella dove si trovano le immagini.
+
+%\usepackage{float}
+
+\usepackage{etoc}
+
+\usepackage{titlesec}
+%\titleformat{\section}{\normalfont\Large\bfseries\center}{}{0pt}{} % Questo serve per togliere il numero dalla section ; Qui ho aggiunto \center e ora sono centrati
+
+%\usetikzlibrary{snakes}
+
+\usepackage[most]{tcolorbox}
+
+\usepackage{wasysym} % per il Checkmark boxed
+
+\usepackage{hyperref} % per i link e i checkbox
+
+%\usepackage{pict2e}
+
+
+%\begin{comment}
+
+\titleformat
+{\section} % command
+[display] % shape
+{\normalfont\Large\bfseries\center} % format
+{} % label
+{-2ex} % sep %0.5ex
+{
+	\rule{\textwidth}{1pt} % 1 pt
+	\vspace{-2pt} % 1ex
+	\centering
+} % before-code
+[
+\vspace{-2ex}% -0.5ex valori originari
+\rule{\textwidth}{0.3pt} % 0.3pt
+] % after-code
+
+%\end{comment}
+
+\begin{comment}
+\titleformat{\section}[block]
+{\titlerule\addvspace{4pt}\normalfont\Large\bfseries\center}
+{\thesection\enspace}{0pt}{}[\vspace{2pt}\titlerule]
+\end{comment}
+
+\titleformat{\subsection}{\normalfont\large\bfseries\center}{}{0pt}{} % Questo l'ho copiato da sopra ed ho aggiunto center e ora sono centrati
+\titleformat{\subsubsection}{\normalfont\large\bfseries\center\color{red}}{}{0pt}{} % Questo l'ho copiato da sopra ed ho aggiunto center e ora sono centrati
+\setcounter{secnumdepth}{2} % levels under \subsection are not numbered
+% secnumdepth 1 è \section 2 è \subsection
+\setcounter{tocdepth}{3}    % levels under \subsubsection are not listed in the TOC
+% tocdepth 1 è section 2 è subsection e 3 è subsubsection
+
+%\usepackage{sectsty} % Se lo attivo mi metti i numerini nella section
+%\sectionfont{\centering}
+%\allsectionsfont{\centering}
+
+\usepackage{diffcoeff} % per le derivate
+
+\usepackage{pagecolor,lipsum} %pagecolor per colorare la pagina (il background)
+% lo sfondo in italiano
+\usepackage{ltablex}
+
+%\usepackage{multirow}
+
+%\usepackage{systeme}
+
+\usetikzlibrary{arrows.meta, angles}
+
+\usetikzlibrary{chains,decorations.pathreplacing}
+
+\usepackage[normalem]{ulem} % serve per sbarrare il testo (strikethrough), usare \sout
+
+\usetikzlibrary{tikzmark} % per circondare gli elementi di una tabella (tabular)
+
+\usetikzlibrary{shapes}
+
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+
+\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+
+\usepackage{subfig} % serve per avere immagini una accanto all'altra
+
+\usepackage{cancel} 
+
+\usetikzlibrary{matrix}
+
+\usepackage{soul}
+
+%\usepackage{emerald}% per dalla 1-4 firma (questo mi da errore, not found)
+
+\usepackage{frcursive}% serve per la firma finale (nelle Conclusioni)
+
+\usepackage{inslrmin}% per la 6 firma
+
+\usepackage{pict2e}
+
+%\usepackage{subcaption} 
+% per le subfigures (più immagini una vicino all'altra)
+
+%\usepackage{subfig}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black, %blue
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Sharelatex Example},
+	bookmarks=true,
+	pdfpagemode=FullScreen,
+}
+
+%\usepackage{lscape}
+%\usepackage{rotating}
+%\usepackage{wrapfig} % per le figure attorno al testo
+
+
+% --- FINE USEPACKAGES ---
+
+% ============================ COMMANDS =========================================
+
+
+
+% !TeX root = ../main.tex
+
+% ============= FINE CUSTOM COMMANDS ============================================
+
+\makeindex
+
+%\begin{comment}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{}
+\fancyhead[C]{ % o fancyhead
+\includegraphics[width=5cm]{alma_mater_studiorum_cesena_logo.png}
+}
+\pagestyle{plain}
+%\end{comment}
+
+\begin{document}
+	
+%\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+%\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\begin{comment}
+\textsc{\LARGE University Name}\\[1.5cm] % Name of your university/college
+\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+\end{comment}
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+%\HRule \\[0.4cm]
+%{ \huge \bfseries Title}\\[0.4cm] % Title of your document
+%\HRule \\[1.5cm]
+\begin{comment}
+\textsf{%
+\huge Relazione Progetto \\
+\large di \\
+\huge Programmazione di Reti \\}
+\textrm{\large Luca Rengo \\
+Matricola: 0000936177} \\
+\textrm{\large Giugno | Luglio 2021}
+\end{comment}
+
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{comment}
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+John \textsc{Smith} % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+Dr. James \textsc{Smith} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+\end{comment}
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+%{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+%\includegraphics[width = 9cm]{alma_mater_studiorum_cesena_logo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+%----------------------------------------------------------------------------------------
+
+%\vfill % Fill the rest of the page with whitespace
+%\end{titlepage}
+	
+	%\begin{comment}
+	%\title{\huge{\textbf{Programmazione ad Oggetti}}}
+	\title{%
+		\huge Relazione Progetto \\
+		\large di \\
+		\huge Programmazione di Reti}
+	\author{Luca Rengo \\
+	Matricola: 0000936177}
+	\date{Giugno | Luglio 2021}
+	%\end{comment}
+	%\includegraphics[width = 40mm]{alma_mater_studiorum_cesena_logo.png}
+	
+	% logo dell'università da aggiungere
+	
+	% il begin document forse dovrei metterlo qui.
+	
+	\maketitle	
+	
+	\thispagestyle{fancy}
+	
+	\pagebreak
+	
+	% INIZIO: TABLEOFCONTENTS
+	
+	\let\cleardoublepage\clearpage
+	\tableofcontents
+	\pagenumbering{arabic}
+	\setcounter{page}{2}
+	%\etocsettocstyle{\subsection*{This Chapter contains:}}{\noindent\rule{\linewidth}{.4pt}}
+	% C'è bisogno del package etoc
+	%\chapter{Extinct Species}
+	%\localtableofcontents
+	
+	% FINE: TABLEOFCONTENTS
+	
+	\fancyhf{}
+	\begin{comment}
+	\renewcommand{\headrulewidth}{2pt}
+	\renewcommand{\footrulewidth}{1pt}
+	\fancyhead[LE]{\leftmark}
+	\fancyhead[RO]{\nouppercase{\rightmark}}
+	\fancyfoot[LE, RO]{\thepage}
+	\end{comment}
+	
+	% descrizione del progetto, architettura dell'applicazione (design)/gui e Implementazione, configurazione e guida all'utilizzo
+	% flow chart dell'applicazione.
+	
+	\include{Descrizione_del_progetto}
+	
+	\include{Architettura_e_Design}
+	
+	\include{Configurazione_e_Guida_all_utilizzo}
+	
+	%\includeonly{}
+	
+\end{document}

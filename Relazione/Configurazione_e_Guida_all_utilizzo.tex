@@ -1,0 +1,337 @@
+% ----------- CONFIGURAZIONE E GUIDA ALL'UTILIZZO ------------------------------
+
+\section{Configurazione e Guida all'Utilizzo}
+
+\subsection{Configurazione}
+
+\textsf{\normalsize E' possibile modificare alcune configurazioni del programma modificando alcune variabili: } \\
+
+\textsf{\normalsize Nel file \textbf{game\_server}: } \\
+
+\begin{itemize}
+	\item \textbf{\small HOST}: L'indirizzo del server.
+	\item \textbf{\small PORT}: La porta del server.
+	\item \textbf{\small BUFSIZE}: La dimensione del buffer di ricezione dei messaggi dal cliente.
+	\item \textbf{\small FORMAT}: E' possibile cambiare il FORMAT dei messaggi che è di default \textbf{utf-8}, ma andrebbe così cambiato anche nel client.
+	\item \textbf{\small domande}: E' possibile aggiungere/rimuovere delle domande con le loro possibili risposte. (max 2 possibili risposte)
+	\item \textbf{\small domande\_errate}: E' possibile aggiungere/rimuovere delle domande trabocchetto.
+	\item \textbf{\small male\_roles}: E' possibile aggiungere/rimuovere ruoli maschili.
+	\item \textbf{\small female\_roles}: E' possibile aggiungere/rimuovere ruoli femminili.
+\end{itemize}
+
+\textsf{\normalsize Nel file \textbf{game\_client}: } \\
+
+\begin{itemize}
+	\item \textbf{\small HOST}: L'indirizzo del server a cui ci si vuole connettere.
+	\item \textbf{\small PORT}: La porta con cui ci si vuole connettere al server.
+	\item \textbf{\small BUFSIZE}: La dimensione del buffer di ricezione dei messaggi dal server.
+	\item \textbf{\small FORMAT}: E' possibile cambiare il FORMAT dei messaggi che è di default \textbf{utf-8}, ma andrebbe così cambiato anche nel server.
+	\item \textbf{\small TOT\_GAME\_SECS}: Il numero di secondi che durerà la partita.
+	%\item \textbf{\small risposte\_corrette}: Sono le identiche domande che ha il server, ma con la risposta giusta.
+	\item \textbf{\small risposte\_corrette}: E' possibile modificare questo dizionario che contiene le stesse identiche domande del server, ma con solo la risposta giusta, casomai si volessero aggiungere/rimuovere domande.
+\end{itemize}
+
+%\newpage
+
+\newgeometry{left = .5cm, right = .5cm}
+
+\enlargethispage{1\linewidth}
+% Guida all'utilizzo Possibilità 3
+\subsection{Guida all'utilizzo}
+\begin{minipage}{.45\textwidth}
+	\begin{itemize}
+		\item \textsf{\normalsize Aprire un terminale per il server ed eseguire il comando: \textbf{python game\_server}.}
+		\item \textsf{\normalsize Dopodichè aprire almeno un altro terminale per almeno un client e digitare: \textbf{python game\_client}.}
+		\item \textsf{\normalsize Con il client si aprirà un'interfaccia grafica che chiederà l'utente di inserire un nome di almeno un carattere.}
+		\item \textsf{\normalsize Inserito il nome si prema il pulsante \bf{"Connect"}.}
+		\item \textsf{\normalsize Dunque si vedranno, sotto il nome, 3 pulsanti con 3 domande, l'utente ne scelga uno.}
+		\item \textsf{\normalsize Se ha scelto la domanda trabocchetto, la GUI mostrerà \emph{"Sei stato/a eliminato/a!"}, dopodichè si aggiornerà di nuovo e mostrerà \emph{"Exiting.."} e dopo tot secondi uscirà dall'applicazione.}
+		\item \textsf{\normalsize Se, invece, si è scelta una domanda corretta allora, sotto quei 3 pulsanti delle domande, si vedrà un label con la domanda scelta e 2 altri pulsanti di cui l'utente dovrà sceglierne uno.}
+		\item \textsf{\normalsize Se l'utente ha scelto la risposta esatta, il suo contatore \emph{"Punteggio"} incrementerà di 1 altrimenti resterà al valore che aveva.}
+	\end{itemize}
+\end{minipage}
+\begin{minipage}{.534\linewidth} % se metto newgeometry allora qui devo mettere .55\linewidth altrimenti sarebbe .75\linewidth
+	\begin{minipage}{.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_connect.png}
+			%\caption{Ciao}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{comment}
+	\begin{minipage}{.45\linewidth}
+	\begin{figure}[H]
+	\includegraphics[width=.75\linewidth]{player_gui_tre_domande2.png}
+	%\caption{Ciao}
+	\end{figure}
+	\end{minipage}
+	\end{comment}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_domanda_errata2}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_exiting2}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_match1_player1}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_match1_player2}
+		\end{figure}
+	\end{minipage}
+	%\hspace{0.05\linewidth}
+\end{minipage}
+
+\restoregeometry
+
+\newpage
+
+\newgeometry{left = .5cm, right = .5cm}
+
+\begin{minipage}{.45\linewidth}
+	\begin{itemize}
+		\item \textsf{\normalsize Dopo aver risposto alla prima domanda, partirà un timer e il giocatore continuerà a ricevere domande e a rispondere finchè quel timer non si fermerà.}
+		\item \textsf{\normalsize Una volta che il timer avrà concluso, l'utente resterà in attesa dal server del punteggio finale e della classifica.}
+		\item \textsf{\normalsize Terminata la partita l'utente potrà cliccare su due pulsanti: \textbf{"RESTART"} per poter rigiocare o \textbf{"QUIT"} per poter uscire.}
+		\item \textsf{\normalsize C'è anche la possibilità di pareggio.}
+	\end{itemize}
+\end{minipage}
+\begin{minipage}{.55\linewidth} % se metto newgeometry allora qui metto .55, altrimenti sarebbe .75\linewidth
+	\begin{minipage}{.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_match2_player1}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_match2_player2}
+		\end{figure}
+	\end{minipage}
+\end{minipage}
+
+\restoregeometry
+
+%\enlargethispage{1\linewidth}
+% Guida all'utilizzo Possibilità 1
+\begin{comment}
+\begin{itemize}
+	\item \textsf{\normalsize Aprire un terminale per il server ed eseguire il comando: %e digitare \textbf{python game\_server}.}
+	\item \textsf{\normalsize Dopodichè aprire almeno un'altro terminale per almeno un client e digitare: \textbf{python game\_client}.}
+	\item \textsf{\normalsize Con il client si aprirà un'interfaccia grafica che chiederà l'utente di inserire un nome di almeno un carattere.}
+	\item \textsf{\normalsize Inserito il nome si prema il pulsante \bf{"Connect"}}
+	\item \textsf{\normalsize Dunque si vedranno, sotto il nome, 3 pulsanti con 3 domande, l'utente ne scelga uno.}
+	\item \textsf{\normalsize Se ha scelto la domanda trabocchetto, la GUI mostrerà \emph{"Sei stato/a eliminato/a!"}, dopodichè si aggiornerà di nuovo e mostrerà \emph{"Exiting.."} e dopo tot secondi uscirà dall'applicazione.}
+	\item \textsf{\normalsize Se, invece, si è scelta una domanda corretta allora, sotto quei 3 pulsanti delle domande, si vedrà un label con la domanda scelta e 2 altri pulsanti di cui l'utente dovrà sceglierne uno.}
+	\item \textsf{\normalsize Se l'utente ha scelto la risposta esatta, il suo contatore \emph{"Punteggio"} incrementerà di 1 altrimenti resterà al valore che aveva.}
+	\item \textsf{\normalsize Dopo aver risposto alla prima domanda, partirà un timer e il giocatore continuerà a ricevere domande e a rispondere finchè quel timer non si fermerà.}
+	\item \textsf{\normalsize Una volta che il timer avrà concluso, l'utente resterà in attesa dal server del punteggio finale e della classifica.}
+	\item \textsf{\normalsize Terminata la partita l'utente potrà cliccare su due pulsanti: \textbf{"RESTART"} per poter rigiocare o \textbf{"QUIT"} per poter uscire.}
+\end{itemize}
+\end{comment}
+
+\newpage
+
+\begin{comment}
+\begin{itemize}
+\item 
+\parbox[t]{\dimexpr\textwidth-\leftmargin}{%
+\vspace{-2.5mm}
+\begin{wrapfigure}[10]{r}{0.5\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=.5\linewidth]{player_gui_connect.png}
+\caption{The beach}
+\end{wrapfigure}
+\lipsum[1]
+}
+\item
+\parbox[t]{\dimexpr\textwidth-\leftmargin}{%
+\vspace{-2.5mm}
+\begin{wrapfigure}{r}{0.5\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=.5\linewidth]{player_gui_tre_domande.png}
+\caption{The beach}
+\end{wrapfigure}
+This is a short text...
+}
+\item     \parbox[t]{\dimexpr\textwidth-\leftmargin}{%
+\vspace{-2.5mm}
+\begin{wrapfigure}[8]{r}{0.5\textwidth}
+\end{wrapfigure}
+\lipsum[1]}
+\end{itemize}
+\end{comment}
+
+\begin{comment}
+{\bfseries Multiple Choice: }% do not use \bf in LaTeX it is deprecated 20+ years ago
+%\begin{enumerate}
+%\item As shown in the figure. This rock is phaneritic and contains quartz, K-feldspar, and plagioclase in nearly equal amounts. What is it?
+
+\begin{minipage}{.45\textwidth}
+\begin{itemize}% never number things manually!
+\item rhyolite
+\item basa
+\item diorite
+\item ash-flow tuff
+\item  granite
+\end{itemize}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\includegraphics[width=1\linewidth]{player_gui_connect.png}
+\end{minipage}
+%\end{enumerate}
+\end{comment}
+
+% Guida all'utilizzo Possibilità 2
+\begin{comment}
+\begin{minipage}{.45\textwidth}
+\begin{itemize}
+	\item \textsf{\normalsize Aprire un terminale per il server ed eseguire il comando: \textbf{python game\_server}.} 
+	%digitare \textbf{python game\_server}}
+	\item \textsf{\normalsize Dopodichè aprire almeno un'altro terminale per almeno un client e digitare: \textbf{python game\_client}}
+	\item \textsf{\normalsize Con il client si aprirà un'interfaccia grafica che chiederà l'utente di inserire un nome di almeno un carattere.}
+	\item \textsf{\normalsize Inserito il nome si prema il pulsante \bf{"Connect"}}
+\end{itemize}
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+	\includegraphics[width=.7\linewidth]{player_gui_connect.png}
+\end{minipage}
+
+\begin{minipage}{.45\linewidth}
+\begin{itemize}
+\item \textsf{\normalsize Dunque si vedranno, sotto il nome, 3 pulsanti con 3 domande, l'utente ne scelga uno.}
+\item \textsf{\normalsize Se ha scelto la domanda trabocchetto, la GUI mostrerà \emph{"Sei stato/a eliminato/a!"}, dopodichè si aggiornerà di nuovo e mostrerà \emph{"Exiting.."} e dopo tot secondi uscirà dall'applicazione.}
+\end{itemize}
+\end{minipage}
+\begin{minipage}{.45\linewidth}
+	\includegraphics[width=.75\linewidth]{player_gui_tre_domande2.png}
+\end{minipage}
+
+\begin{minipage}{.45\linewidth}
+\begin{itemize}
+	\item \textsf{\normalsize Se, invece, si è scelta una domanda corretta allora, sotto quei 3 pulsanti delle domande, si vedrà un label con la domanda scelta e 2 altri pulsanti di cui l'utente dovrà sceglierne uno.}
+	\item \textsf{\normalsize Se l'utente ha scelto la risposta esatta, il suo contatore \emph{Punteggio} incrementerà di 1 altrimenti resterà al valore che aveva.}
+	\item \textsf{\normalsize Dopo aver risposto alla prima domanda, partirà un timer e il giocatore continuerà a ricevere domande e a rispondere finchè quel timer non si fermerà.}
+\end{itemize}
+\end{minipage}
+\begin{minipage}{.7\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_domanda_errata2}
+			\caption{This is the first figure}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_exiting2}
+			\caption{This is the second figure}
+		\end{figure}
+	\end{minipage}
+\end{minipage}
+
+\begin{minipage}{.45\linewidth}
+\begin{itemize}
+	\item \textsf{\normalsize Una volta che il timer avrà concluso, l'utente resterà in attesa dal server del punteggio finale e della classifica.}
+	\item \textsf{\normalsize Terminata la partita l'utente potrà cliccare su due pulsanti: \textbf{"RESTART"} per poter rigiocare o \textbf{"QUIT"} per poter uscire.}
+\end{itemize}	
+\end{minipage}
+\begin{minipage}{.7\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_match1_player1}
+			\caption{This is the first figure}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_match1_player2}
+			\caption{This is the second figure}
+		\end{figure}
+	\end{minipage}
+\end{minipage}
+
+\begin{minipage}{.45\linewidth}
+\begin{itemize}
+	\item \textsf{\normalsize C'è anche la possibilità di pareggio.}
+\end{itemize}
+\end{minipage}
+\begin{minipage}{.7\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_match2_player1}
+			\caption{This is the first figure}
+		\end{figure}
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{figure}[H]
+			\includegraphics[width=\linewidth]{player_gui_match2_player2}
+			\caption{This is the second figure}
+		\end{figure}
+	\end{minipage}
+\end{minipage}
+\end{comment}
+
+\begin{comment}
+\begin{figure}
+\begin{subfigure}[b]{.3\textwidth}
+\includegraphics[width=\textwidth]{player_gui_domanda_errata2.png}
+\end{subfigure}
+\begin{subfigure}[b]{.3\textwidth}
+\includegraphics[width=\textwidth]{player_gui_exiting2.png}
+\end{subfigure}
+\end{figure}
+\end{comment}
+
+\begin{comment}
+\begin{figure}
+\begin{subfigure}[t]{0.475\textwidth}
+\includegraphics[width=.3\textwidth]{player_gui_domanda_errata2}
+\caption{Modello compartimentale mammellare (o mammillare).}
+\label{fig-a}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.475\textwidth}
+\includegraphics[width=.3\textwidth]{player_gui_exiting2}
+\caption{Modello compartimentale catenario.}
+\label{fig-b}
+\end{subfigure}
+\caption{Principali topologie dei modelli compartimentali.} 
+\label{fig:main}
+\end{figure}
+\end{comment}
+
+% Ho usato questo!
+\begin{comment}
+\begin{minipage}{\linewidth}
+\centering
+\begin{minipage}{0.45\linewidth}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{player_gui_domanda_errata2}
+\caption{This is the first figure}
+\end{figure}
+\end{minipage}
+\hspace{0.05\linewidth}
+\begin{minipage}{0.45\linewidth}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{player_gui_exiting2}
+\caption{This is the second figure}
+\end{figure}
+\end{minipage}
+\end{minipage}
+\end{comment}
+%\enlargethispage{1\linewidth}
