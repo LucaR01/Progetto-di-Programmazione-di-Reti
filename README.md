@@ -13,3 +13,6 @@ Progetto di Programmazione di Reti per l'università "Alma Mater Studiorum" di B
 - If you answer correctly you gain a point.
 - Otherwise you lose one.
 - Once the game is over, you can either `RESTART` or `QUIT`.
+
+# If it doesn't run:
+- Try using python version `Python 3.7.0`
