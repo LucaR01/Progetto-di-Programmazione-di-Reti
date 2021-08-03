@@ -16,4 +16,4 @@ Progetto di Programmazione di Reti per l'università "Alma Mater Studiorum" di B
 
 # If it doesn't run:
 - Try using python version `Python 3.7.0`.
-- And launch it on cmd/terminal.
+- And launch it on `cmd`/`terminal`.
