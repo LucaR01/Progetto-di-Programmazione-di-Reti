@@ -398,6 +398,7 @@ def reset(client):
 def quit(client):
     client.send("QUIT".encode(FORMAT))
     client.close()
+    #root.quit()
     sys.exit(0)
 
 # Questa funzione viene chiamata quando si preme il pulsante di una delle 3 domande.
@@ -526,7 +527,7 @@ def update_gui():
 
 # Questa funzione viene chiamata quando il pulsante "Connect" viene premuto.
 def connect():
-    global your_name, ruolo # ,cliente
+    global your_name, ruolo, cliente
     if(len(ent_name.get())) < 1:
         tk.messagebox.showerror(title="ERROR!!!", message="You must enter a name")
     else:

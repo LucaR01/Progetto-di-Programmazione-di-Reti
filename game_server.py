@@ -41,7 +41,7 @@ SERVER.bind((HOST, PORTA))
 male_roles = ["Mago", "Stregone", "Apprendista Stregone", "Guerriero", "Evocatore", "Arciere", "Balestriere",
 "Re", "Principe","Cavaliere"]
 female_roles = ["Maga", "Strega", "Apprendista Stregone", "Guerriera", "Evocatrice", "Arciere", "Balestriere",
-"Regina", "Principessa","Cavaliere"]
+"Regina", "Principessa","Cavaliera", "Dama"]
 
 # dizionario con le domande e le possibili risposte
 domande = {
@@ -259,11 +259,16 @@ def close_connection(utente_connection):
     print("Updated clients: " + str(clienti))
     print("Updated addresses: " + str(indirizzi))
     utente_connection.close()
+    # per chiudere la thread
     #sys.exit(0)
     # se non ci sono più utenti esce.
     if(len(clienti) <= 0):
         print("Non ci sono pià clients..")
         print("Disconnessione del server..")
+        #sys.exit(0)
+        SERVER.close()
+    else:
+        # la thread va comunque chiusa.
         sys.exit(0)
 
 # Questa funzione riceve dagli utenti le loro statistiche (risposte corrette/sbagliate) e riordina i
