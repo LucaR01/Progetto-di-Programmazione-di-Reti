@@ -15,4 +15,5 @@ Progetto di Programmazione di Reti per l'università "Alma Mater Studiorum" di B
 - Once the game is over, you can either `RESTART` or `QUIT`.
 
 # If it doesn't run:
-- Try using python version `Python 3.7.0`
+- Try using python version `Python 3.7.0`.
+- And launch it on cmd/terminal.
